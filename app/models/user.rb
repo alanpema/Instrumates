@@ -4,5 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :instruments
+  validates :name, :age, presence: true
+  has_many :instruments, dependent: :destroy
+
 end
