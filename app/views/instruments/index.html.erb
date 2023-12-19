@@ -1,0 +1,14 @@
+<h1>here are the instrus</h1>
+
+
+<% @instruments.each do |instrument| %>
+  <div class="card" style="width: 18rem;">
+  <%= image_tag instrument.photo %>
+    <div class="card-body">
+      <h5 class="card-title"><%= instrument.name %></h5>
+      <p class="card-text"><%= instrument.condition %></p>
+      <p class="card-text"><%= instrument.price %></p>
+      <%= link_to "Show", instrument_path(instrument) %>
+      <%end%>
+    </div>
+  </div>
