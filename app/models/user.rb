@@ -5,8 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
-  has_many :instruments, dependent: :destroy
-  has_many :bookings, dependent: :destroy
-  has_many :instruments, through: :bookings
-  has_one_attached :photo
+  # OWNER:
+  has_many :created_instruments, class_name: "Instrument", foreign_key: "user_id", dependent: :destroy
+  has_many :owner_bookings, through: :created_instruments, source: :bookings
+
+  # RENTER:
+  has_many :customer_bookings, class_name: "Booking", foreign_key: "user_id", dependent: :destroy
+  has_many :rented_instruments, through: :customer_bookings, source: :instrument
 end
