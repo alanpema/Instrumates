@@ -1,2 +1,11 @@
-
-# no puedo logear need permits before action
+<div class="container my-4">
+  <div class="row d-flex justify-content-center">
+    <div class="col-6 bg-white p-4 shadow">
+        <%= simple_form_for [@instrument, @booking] do |f| %>
+          <%= f.input :pick_up_date, as: :date, label: "Pick up Date" %>
+          <%= f.input :drop_off_date, as: :date, label: "Return date" %>
+          <%= f.button :submit, "Create Booking", class: "btn btn-outline-warning" %>
+        <% end %>
+    </div>
+  </div>
+</div>
