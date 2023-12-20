@@ -12,4 +12,6 @@ class User < ApplicationRecord
   # RENTER:
   has_many :customer_bookings, class_name: "Booking", foreign_key: "user_id", dependent: :destroy
   has_many :rented_instruments, through: :customer_bookings, source: :instrument
+
+  has_one_attached :photo
 end

@@ -1,5 +1,12 @@
 
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
 .footer {
+
   background: #C1BFB5;
   display: flex;
   align-items: center;
@@ -7,7 +14,7 @@
   height: 100px;
   padding: 0px 50px;
   color: rgba(0,0,0,0.3);
-  position: fixed;
+  position:relative;
   bottom: 0;
   width: 100%;
 }
