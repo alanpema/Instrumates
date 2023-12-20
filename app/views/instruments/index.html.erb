@@ -1,14 +1,20 @@
-<h1>here are the instrus</h1>
-
+<div class="container p-5">
+<h1>Check out our instruments 🥁</h1>
+<div class="row">
 
 <% @instruments.each do |instrument| %>
+<div class="col-9 col-md-3 mb-4 me-5">
   <div class="card" style="width: 18rem;">
   <%= image_tag instrument.photo %>
     <div class="card-body">
       <h5 class="card-title"><%= instrument.name %></h5>
-      <p class="card-text"><%= instrument.condition %></p>
-      <p class="card-text"><%= instrument.price %></p>
-      <%= link_to "Show", instrument_path(instrument) %>
-      <%end%>
+      <p class="card-text lh-1"><small>Category: <%= instrument.category %></small></p>
+      <p class="card-text lh-1"><small>Condition: <%= instrument.condition %></small></p>
+      <p class="card-text lh-1"><small>Price: $<%= instrument.price %></small></p>
+      <%= link_to "Rent now", instrument_path(instrument), class:"text-decoration-none d-flex justify-content-end text-danger" %>
     </div>
   </div>
+</div>
+      <%end%>
+</div>
+</div>
