@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   validates :name, :age, presence: true
   has_many :instruments, dependent: :destroy
-
+  has_many :bookings, dependent: :destroy
+  has_many :instruments, through: :bookings
 end
