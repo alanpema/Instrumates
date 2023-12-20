@@ -1,0 +1,71 @@
+<div class="profile-container d-flex">
+  <div class="row col-lg-4 mx-2" id="profilephoto">
+    <div class="card mb-4 d-flex justify-content-center">
+      <div class="card-body text-center">
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key, class: "rounded-circle img-fluid" %>
+        <% else %>
+          <h1>Hello</h1>
+        <% end %>
+        <h5 class="my-3"><%= @user.name %></h5>
+        <p class="text-muted mb-1"><%= @user.age %></p>
+        <p class="text-muted mb-4"><%= @user.location %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Name</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0"><%= @user.name %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Email</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0"><%= @user.email %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Phone</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0"><%= @user.phone %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Age</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0"><%= @user.age %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Address</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0"><%= @user.location %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-center mb-2">
+          <button type="button" class="btn btn-outline-danger"><%= link_to "Edit Profile", edit_user_registration_path, class:"text-decoration-none text-danger"%></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

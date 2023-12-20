@@ -1,0 +1,48 @@
+<div class="owner-container mb-4">
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="card mb-4 mb-md-0 p-3">
+          <p class="mb-4"><span class="text-danger font-italic me-1">Instruments in store</span><button type="button" class="btn btn-outline-danger"><%= link_to "Create an Instrument", new_instrument_path, class:"text-decoration-none text-danger"%></button></p>
+          <% @current_user.created_instruments.each do |instrument| %>
+            <div class="col-md-12 mb-3">
+                <div class="card mb-4 mb-md-0">
+                  <div class="card-product">
+                      <%= cl_image_tag instrument.photo.key %>
+                    <div class="card-product-infos">
+                      <h2><%= instrument.name %></h2>
+                      <p>Condition: <%= instrument.condition %></p>
+                      <p>Price: <%= instrument.price %></p>
+                      <p><%= link_to "Details", instrument_path(instrument), class:"text-decoration-none text-danger"%></p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          <%end%>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card mb-4 mb-md-0 p-3">
+          <p class="mb-4"><span class="text-danger font-italic me-1">Rented Instruments</span></p>
+          <% @current_user.owner_bookings.each do |booking| %>
+            <div class="col-md-12 mb-3">
+                <div class="card mb-4 mb-md-0">
+                   <div class="card-product">
+                     <%= cl_image_tag booking.instrument.photo.key %>
+                    <div class="card-product-infos">
+                     <h2><%= booking.instrument.name %></h2>
+                     <p>Pick up date: <%= booking.pick_up_date %></p>
+                    <p>Drop off date: <%= booking.drop_off_date %></p>
+                    <p>Renter contact: <%= booking.renter.name %> / <%= booking.renter.email %></p>
+                    <p><%= link_to "Details", instrument_path(booking), class:"text-decoration-none text-danger"%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%end%>
+    </div>
+  </div>
+
+  </div>
+</div>
