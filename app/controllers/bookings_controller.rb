@@ -16,9 +16,9 @@ class BookingsController < ApplicationController
     @instrument = Instrument.find(params[:instrument_id])
     @booking = Booking.new(booking_params)
     @booking.instrument = @instrument
-    @booking.user = current_user
+    @booking.renter = current_user
     if @booking.save
-      redirect_to instrument_booking_path(@instrument, @booking)
+      redirect_to dashboard_path
     else
       render :new
     end
@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to instruments_path
+    redirect_to dashboard_path
   end
 
   private
