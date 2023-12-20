@@ -1,0 +1,21 @@
+<div class="renter-container card p-4 mb-4">
+  <div class="d-flex w-100 justify-content-between">
+    <span class="text-danger font-italic me-1">Borrowed Instruments</span>
+    <%= link_to "Book an Instrument", instruments_path, class:"btn btn-outline-danger text-decoration-none text-danger"%>
+  </div>
+  <% @current_user.customer_bookings.each do |booking| %>
+    <div class="col-md-12 mb-3">
+      <div class="card mb-4 mb-md-0">
+        <div class="card-product">
+          <%= cl_image_tag booking.instrument.photo.key %>
+          <div class="card-product-infos">
+            <h2><%= booking.instrument.name %></h2>
+            <p>Pick up date: <%= booking.pick_up_date %></p>
+            <p>Drop off date: <%= booking.drop_off_date %></p>
+            <p>Owner contact: <%= booking.owner.name %> / <%= booking.owner.email %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>
