@@ -1,11 +1,13 @@
 <div class="container p-5">
-<h1>Check out our instruments 🥁</h1>
+<h1>Check out our instruments 🎸</h1>
 <div class="row">
 
 <% @instruments.each do |instrument| %>
 <div class="col-9 col-md-3 mb-4 me-5">
-  <div class="card" style="width: 18rem;">
-  <%= image_tag instrument.photo %>
+  <div class="card d-flex" style="width: 18rem;">
+    <% if instrument.photo.attached? %>
+      <%= cl_image_tag instrument.photo.key %>
+    <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= instrument.name %></h5>
       <p class="card-text lh-1"><small>Category: <%= instrument.category %></small></p>
@@ -18,3 +20,8 @@
       <%end%>
 </div>
 </div>
+
+
+
+
+<%# <%= cl_image_tag instrument.photo.key, class:"card-img-top" %1> %>
