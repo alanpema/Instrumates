@@ -19,16 +19,17 @@ class InstrumentsController < ApplicationController
     redirect_to instrument_path(@instrument)
   end
 
-  def update
-    @instrument = Instrument.find(params[:id])
-    @instrument.update(params[:instrument])
-    @instrument.save
-  end
 
   def edit
     @instrument = Instrument.find(params[:id])
-    @instrument.update(params[:instrument])
+    render turbo_stream: turbo_stream.replace(:instrument, partial: "instruments/turbo_frames/edit")
+  end
+
+  def update
+    @instrument = Instrument.find(params[:id])
+    @instrument.update(instrument_params)
     @instrument.save
+    render turbo_stream: turbo_stream.replace(:edit_instrument, partial: "instruments/turbo_frames/show")
   end
 
   def destroy
