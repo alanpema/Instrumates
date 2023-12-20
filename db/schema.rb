@@ -46,6 +46,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_19_225356) do
     t.date "pick_up_date"
     t.date "drop_off_date"
     t.integer "final_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.bigint "instrument_id", null: false
     t.datetime "created_at", null: false
