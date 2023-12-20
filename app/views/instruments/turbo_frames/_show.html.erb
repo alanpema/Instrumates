@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "instrument", remote: true do %>
+  <h1><%= @instrument.name %></h1>
+  <p><%= @instrument.condition %></p>
+
+  <%= link_to "Delete", instrument_path(@instrument), class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <%= link_to "Update", edit_instrument_path(@instrument), class: "btn btn-warning" %>
+<% end %>
