@@ -7,6 +7,7 @@
           <%= f.input :name, as: :select, collection: Instrument::INSTRUMENTS, label:"Instrument 🎵" %>
           <%= f.input :condition, as: :select, collection: Instrument::CONDITIONS, label:"Condition" %>
           <%= f.input :category, as: :select, collection: Instrument::CATEGORIES, label:"Category" %>
+          <%= f.input :address, label:"Pick up location 🗺️" %>
           <%= f.input :price, label:"Price 🫰"%>
           <%= f.submit class: "btn btn-outline-danger" %>
         <% end %>

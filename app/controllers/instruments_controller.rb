@@ -2,6 +2,14 @@ class InstrumentsController < ApplicationController
 
   def index
     @instruments = Instrument.all
+
+    @markers = @instruments.geocoded.map do |instrument|
+      {
+        lat: instrument.latitude,
+        lng: instrument.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { instrument: instrument })
+      }
+    end
   end
 
   def new
@@ -10,6 +18,14 @@ class InstrumentsController < ApplicationController
 
   def show
     @instrument = Instrument.find(params[:id])
+
+    if @instrument.geocoded?
+      @markers = [{
+        lat: @instrument.latitude,
+        lng: @instrument.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { instrument: @instrument })
+      }]
+    end
   end
 
   def create
@@ -41,6 +57,6 @@ class InstrumentsController < ApplicationController
   private
 
   def instrument_params
-    params.require(:instrument).permit(:name, :condition, :category, :photo, :price)
+    params.require(:instrument).permit(:name, :condition, :category, :photo, :price, :address)
   end
 end
