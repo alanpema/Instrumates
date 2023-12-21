@@ -1,12 +1,11 @@
 <div class="container p-5">
-<h1>Check out our instruments 🎸</h1>
+<h1>Check out our Instruments 🎸</h1>
 <div class="row">
-
 <% @instruments.each do |instrument| %>
 <div class="col-9 col-md-3 mb-4 me-5">
   <div class="card d-flex" style="width: 18rem;">
     <% if instrument.photo.attached? %>
-      <%= cl_image_tag instrument.photo.key %>
+      <%= cl_image_tag instrument.photo.key, style: "height: 220px;" %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= instrument.name %></h5>
@@ -19,6 +18,11 @@
 </div>
       <%end%>
 </div>
+<h2>Location of the Instruments 📍</h2>
+<div style="width: 100%; height: 500px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>
 
 

@@ -1,20 +1,22 @@
-<div class="container my-4 d-flex justify-content-center p-5">
+<div class="container d-flex justify-content-center">
   <%= turbo_frame_tag "instrument", remote: true do %>
     <div class="shadow-lg card d-flex" style="width: 18rem;">
       <% if @instrument.photo.attached? %>
-        <%= cl_image_tag @instrument.photo.key %>
+        <%= cl_image_tag @instrument.photo.key, style: "height: 250px;"%>
       <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= @instrument.name %></h5>
         <p>This <%= @instrument.name %> is in a "<%= @instrument.condition %>" state and can be borrowed
         for only <%= @instrument.price%>$ per day. </p>
         <div class="d-flex flex-column">
-        <%= link_to "Book this intrument", new_instrument_booking_path(@instrument), class: "btn btn-outline-danger rounded-pill mb-4", data: { turbo: false } %>
+        <% if @instrument.user != current_user %>
+          <%= link_to "Book this intrument", new_instrument_booking_path(@instrument), class: "btn btn-outline-danger rounded-pill mb-4", data: { turbo: false } %>
+        <% end %>
         </div>
         <% if @instrument.user == current_user %>
           <div class="d-flex flex-column">
-            <%= link_to "Update", edit_instrument_path(@instrument), class: "btn btn-outline-warning" %>
-            <%= link_to "Delete", instrument_path(@instrument), class: "btn btn-outline-danger mb-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            <%= link_to "Edit info", edit_instrument_path(@instrument), class: "btn btn-outline-warning mb-2" %>
+            <%= link_to "Delete 🗡️ ", instrument_path(@instrument), class: "btn btn-outline-danger mb-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
           </div>
         <% end %>
         <%= link_to "back", instruments_path, class: "btn btn-danger", data: { turbo: false } %>

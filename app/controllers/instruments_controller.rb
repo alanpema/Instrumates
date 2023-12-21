@@ -5,6 +5,12 @@ class InstrumentsController < ApplicationController
     if params[:query].present?
       sql_subquery = "name ILIKE :query OR condition ILIKE :query OR category ILIKE :query"
       @instruments = @instruments.where(sql_subquery, query: "%#{params[:query]}%")
+    @markers = @instruments.geocoded.map do |instrument|
+      {
+        lat: instrument.latitude,
+        lng: instrument.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { instrument: instrument })
+      }
     end
   end
 
@@ -14,6 +20,14 @@ class InstrumentsController < ApplicationController
 
   def show
     @instrument = Instrument.find(params[:id])
+
+    if @instrument.geocoded?
+      @markers = [{
+        lat: @instrument.latitude,
+        lng: @instrument.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { instrument: @instrument })
+      }]
+    end
   end
 
   def create
@@ -45,6 +59,6 @@ class InstrumentsController < ApplicationController
   private
 
   def instrument_params
-    params.require(:instrument).permit(:name, :condition, :category, :photo, :price)
+    params.require(:instrument).permit(:name, :condition, :category, :photo, :price, :address)
   end
 end
