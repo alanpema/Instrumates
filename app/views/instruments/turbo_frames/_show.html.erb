@@ -6,7 +6,7 @@
       <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= @instrument.name %></h5>
-        <p>This <%= @instrument.name %> its in a "<%= @instrument.condition %>" state and can be borrowed
+        <p>This <%= @instrument.name %> is in a "<%= @instrument.condition %>" state and can be borrowed
         for only <%= @instrument.price%>$ per day. </p>
         <div class="d-flex flex-column">
         <%= link_to "Book this intrument", new_instrument_booking_path(@instrument), class: "btn btn-outline-danger rounded-pill mb-4", data: { turbo: false } %>

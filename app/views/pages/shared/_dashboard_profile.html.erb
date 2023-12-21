@@ -3,7 +3,7 @@
     <div class="card mb-4 d-flex justify-content-center">
       <div class="card-body text-center">
         <% if @user.photo.attached? %>
-          <%= cl_image_tag @user.photo.key, class: "rounded-circle img-fluid" %>
+          <%= cl_image_tag @user.photo.key, class: "rounded-circle img-fluid border-2", style: "height: 200px;" %>
         <% else %>
           <h1>Hello</h1>
         <% end %>
@@ -62,7 +62,7 @@
           </div>
         </div>
         <hr>
-        <div class="d-flex justify-content-center mb-2">
+        <div class="d-flex justify-content-center mt-4">
           <button type="button" class="btn btn-outline-danger"><%= link_to "Edit Profile", edit_user_registration_path, class:"text-decoration-none text-danger"%></button>
         </div>
       </div>
