@@ -1,8 +1,8 @@
-<div class="container my-4 d-flex justify-content-center p-5">
+<div class="container d-flex justify-content-center">
   <%= turbo_frame_tag "instrument", remote: true do %>
     <div class="shadow-lg card d-flex" style="width: 18rem;">
       <% if @instrument.photo.attached? %>
-        <%= cl_image_tag @instrument.photo.key %>
+        <%= cl_image_tag @instrument.photo.key, style: "height: 250px;"%>
       <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= @instrument.name %></h5>
