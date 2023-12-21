@@ -2,6 +2,10 @@ class InstrumentsController < ApplicationController
 
   def index
     @instruments = Instrument.all
+    if params[:query].present?
+      sql_subquery = "name ILIKE :query OR condition ILIKE :query OR category ILIKE :query"
+      @instruments = @instruments.where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def new
