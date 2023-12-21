@@ -1,8 +1,12 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon d-flex justify-content-around border-1 border border-danger">
+   <div class="d-flex">
+ <%= link_to "#", class: "navbar-brand" do %>
       <i class="fa-solid fa-guitar fa-2xl"></i>
     <% end %>
+        <div>
+        <%= link_to "Create now", new_instrument_path, class:"btn btn-outline-primary"%>
+        </div>
+  </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,29 +23,37 @@
                     class: "form-control",
                     placeholder: "find your instrument!"
                 %>
-                <%= submit_tag "search", name: "", class: "btn-primary:hover" %>
+                <%= submit_tag "Search instruments", name: "", class: "btn-primary:hover" %>
               <% end %>
             </div>
           </div>
+            <%= link_to "See all instruments", instruments_path, class: "nav-link"%>
           <li class="nav-item dropdown">
-          <%= link_to ":mag_right: Search instruments", instruments_path, class: "nav-link border align-items: right"%>
+          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.photo.attached? %>
               <%=cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
-              <% else %>
+            <% else %>
               <img src="https://gopostr.s3.amazonaws.com/favicon_url/bvnowNkxrBEJWo1QyPAeSz0vDNa8hajfTgPKTP7m.png" class="avatar" alt="dropdown menu">
             <% end %>
-
+          </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Profile", dashboard_path, class: "dropdown-item" %>
-              <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "| Login :wave: ", new_user_session_path, class: "nav-link" %>
+            <%= link_to new_user_session_path, class: "nav-link"  do%>
+              <span><i>Login 🌊</i></span>
+            <% end %>
           </li>
-
+           <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "nav-link"  do %>
+            <span><i><i>Register ✒️</i></i></span>
+            <% end %>
+            <%= link_to "| Login :wave: ", new_user_session_path, class: "nav-link" %>
+        </li>
            <li class="nav-item">
             <%= link_to " Register :black_nib: |", new_user_registration_path, class: "nav-link" %>
           </li>
