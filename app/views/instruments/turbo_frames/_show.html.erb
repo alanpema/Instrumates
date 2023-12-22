@@ -2,7 +2,7 @@
   <%= turbo_frame_tag "instrument", remote: true do %>
     <div class="shadow-lg card d-flex" style="width: 18rem;">
       <% if @instrument.photo.attached? %>
-        <%= cl_image_tag @instrument.photo.key, style: "height: 250px;"%>
+        <%= cl_image_tag @instrument.photo.key, style: "height: 280px;"%>
       <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= @instrument.name %></h5>
