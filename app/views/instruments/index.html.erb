@@ -1,22 +1,27 @@
 <div class="container p-5">
-<h1 class="text-danger">Find your new INSTRUMATES   🎸<button type="button" class="btn btn-danger"><%= link_to "Add instrument to store 🎹", new_instrument_path, class:"text-decoration-none text-white"%></button>🎷</h1>
-<div class="row">
-<% @instruments.each do |instrument| %>
-<div class="col-9 col-md-3 mb-4 me-5">
-  <div class="card d-flex" style="width: 18rem;">
-    <% if instrument.photo.attached? %>
-      <%= cl_image_tag instrument.photo.key, style: "height: 220px;" %>
-    <% end %>
-    <div class="card-body ">
-      <h5 class="card-title text-danger"><%= instrument.name %></h5>
-      <p class="card-text lh-1"><small>Category: <%= instrument.category %></small></p>
-      <p class="card-text lh-1"><small>Condition: <%= instrument.condition %></small></p>
-      <p class="card-text lh-1"><small>Price: $<%= instrument.price %></small></p>
-      <%= link_to "Rent now", instrument_path(instrument), class:"text-decoration-none d-flex justify-content-end text-danger" %>
-    </div>
+<div class="row justify-content-evenly align-items-center">
+  <div class="d-flex align-items-center justify-content-center" style="margin-left: 50px;">
+    <h1 class="text-danger ">Find your new INSTRUMATES 🎸</h1>
+    <button type="button" class="btn btn-danger">
+    <%= link_to "Add instrument to store 🎹", new_instrument_path, class:"text-decoration-none text-white"%></button>
+    <h1>🎷</h1>
   </div>
-</div>
-      <%end%>
+  <% @instruments.each do |instrument| %>
+    <div class="col-9 col-md-3 mb-4 me-5">
+      <div class="card d-flex col-3" style="width: 18rem;">
+        <% if instrument.photo.attached? %>
+          <%= cl_image_tag instrument.photo.key, style: "height: 220px;" %>
+        <% end %>
+        <div class="card-body ">
+          <h5 class="card-title text-danger"><%= instrument.name %></h5>
+          <p class="card-text lh-1"><small>Category: <%= instrument.category %></small></p>
+          <p class="card-text lh-1"><small>Condition: <%= instrument.condition %></small></p>
+          <p class="card-text lh-1"><small>Price: $<%= instrument.price %></small></p>
+          <%= link_to "Rent now", instrument_path(instrument), class:"text-decoration-none d-flex justify-content-end text-danger" %>
+        </div>
+      </div>
+    </div>
+  <%end%>
 </div>
 <h2>Location of the Instruments 📍</h2>
 <div style="width: 100%; height: 500px;"
