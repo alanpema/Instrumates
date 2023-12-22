@@ -1,5 +1,5 @@
 <div class="container p-5">
-<h1>Check out our Instruments 🎸</h1>
+<h1 class="text-danger">Find your new INSTRUMATES   🎸<button type="button" class="btn btn-danger"><%= link_to "Add instrument to store 🎹", new_instrument_path, class:"text-decoration-none text-white"%></button>🎷</h1>
 <div class="row">
 <% @instruments.each do |instrument| %>
 <div class="col-9 col-md-3 mb-4 me-5">
@@ -7,8 +7,8 @@
     <% if instrument.photo.attached? %>
       <%= cl_image_tag instrument.photo.key, style: "height: 220px;" %>
     <% end %>
-    <div class="card-body">
-      <h5 class="card-title"><%= instrument.name %></h5>
+    <div class="card-body ">
+      <h5 class="card-title text-danger"><%= instrument.name %></h5>
       <p class="card-text lh-1"><small>Category: <%= instrument.category %></small></p>
       <p class="card-text lh-1"><small>Condition: <%= instrument.condition %></small></p>
       <p class="card-text lh-1"><small>Price: $<%= instrument.price %></small></p>

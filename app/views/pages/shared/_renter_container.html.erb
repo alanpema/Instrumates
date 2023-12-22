@@ -9,7 +9,7 @@
         <div class="card-product">
           <%= cl_image_tag booking.instrument.photo.key %>
           <div class="card-product-infos">
-            <h2 class="text-danger"><%= booking.instrument.name %></h2>
+            <h2 class="text-danger"><%= booking.instrument.name %><%= render  "bookings/shared/status", booking: booking %></h2>
             <p>Pick up date: <%= booking.pick_up_date %> | Drop off date: <%= booking.drop_off_date %></p>
             <p>Pick-up / Drop-off location: <%= booking.instrument.address %></p>
             <p>Owner contact: <%= booking.owner.name %> / <%= booking.owner.email %></p>
