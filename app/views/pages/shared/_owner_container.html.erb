@@ -23,7 +23,6 @@
           <%end%>
       </div>
     </div>
-
     <div class="col-md-6">
       <div class="card mb-2 mb-md-0 p-3">
         <h4 class="mb-4"><span class="text-danger font-italic me-1">Rented Instruments</span></h4>
@@ -31,9 +30,15 @@
             <div class="col-md-12 mb-3">
                 <div class="card mb- mb-md-0">
                   <div class="card-product">
-                     <%= cl_image_tag booking.instrument.photo.key %>
+                    <%= cl_image_tag booking.instrument.photo.key %>
                     <div class="card-product-infos">
-                      <h2 class="text-danger"><%= booking.instrument.name %> <%= link_to "Details", instrument_path(booking), class:"text-decoration-none text-secondary"%></h2>
+                      <h2 class="text-danger">
+                        <%= booking.instrument.name %>
+                        <%= link_to "Details", instrument_path(booking), class:"text-decoration-none text-secondary"%>
+                        <%= render  "bookings/shared/status", booking: booking %>
+                        <%= link_to "Accept", accept_booking_path(booking), class: "badge bg-success text-decoration-none",data: {turbo_method: :patch} %>
+                        <%= link_to "Reject", decline_booking_path(booking),  data: { confirm: 'Are you sure?' }, class: "badge bg-danger me-1 text-decoration-none",  data: {turbo_method: :patch} %>
+                      </h2>
                       <p>Pick up date: <%= booking.pick_up_date%> | Drop off date: <%= booking.drop_off_date %></p>
                       <p>Price per day: <%= booking.instrument.price%>$ | Rented days: <%=booking.ranged_dates %></p>
                       <p>Total: <%=booking.final_price%>$</p>

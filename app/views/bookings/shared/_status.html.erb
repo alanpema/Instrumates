@@ -1,0 +1,7 @@
+<% if booking.accepted? %>
+  <span class="badge bg-success text-white">Accepted</span>
+<% elsif booking.declined? %>
+  <span class="badge bg-danger text-white">Rejected</span>
+<% elsif booking.pending? %>
+  <span class="badge bg-warning text-dark">Pending</span>
+<% end %>
