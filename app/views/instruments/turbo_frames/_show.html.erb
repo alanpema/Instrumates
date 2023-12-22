@@ -6,7 +6,7 @@
       <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= @instrument.name %></h5>
-        <p>This <%= @instrument.name %> is in a "<%= @instrument.condition %>" state and can be borrowed
+        <p>This <%= @instrument.name %> is in "<%= @instrument.condition %>" condition and can be borrowed
         for only <%= @instrument.price%>$ per day. </p>
         <div class="d-flex flex-column">
         <% if @instrument.user == current_user %>
