@@ -1,64 +1,46 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon d-flex justify-content-around border-1 border border-danger">
-   <div class="d-flex">
- <%= link_to "#", class: "navbar-brand" do %>
-      <i class="fa-solid fa-guitar fa-2xl"></i>
-    <% end %>
-        <div>
-        <%= link_to "Create now", new_instrument_path, class:"btn btn-outline-primary"%>
-        </div>
-  </div>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <div class="row justify-content-center">
-            <div class="col-sm-15 my-10">
-              <%= form_with url: instruments_path, method: :get, class: "d-flex" do %>
-                <%= text_field_tag :query,
-                    params[:query],
-                    class: "form-control",
-                    placeholder: "find your instrument!"
-                %>
-                <%= submit_tag "Search instruments", name: "", class: "btn-primary:hover" %>
-              <% end %>
-            </div>
-          </div>
-            <%= link_to "See all instruments", instruments_path, class: "nav-link"%>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if current_user.photo.attached? %>
-              <%=cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
-            <% else %>
-              <img src="https://gopostr.s3.amazonaws.com/favicon_url/bvnowNkxrBEJWo1QyPAeSz0vDNa8hajfTgPKTP7m.png" class="avatar" alt="dropdown menu">
-            <% end %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
+<% if user_signed_in? %>
+  <div class="navbar navbar-expand-sm navbar-danger navbar-lewagon d-flex justify-content-between border-1 border-bottom border-danger">
+    <div class="mx-2">
+      <i class="fa-solid fa-guitar fa-2xl" style="color: #6b0f1a;"></i>
+    </div>
+    <div class="mx-2 my-0 ">
+      <%= form_with url: instruments_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,params[:query],class: "form-control",placeholder: "🔎 Instrument/Style 🔍 "%>
+        <%= submit_tag "Click to see all instruments", name: "", class: "btn btn-outline-danger " %>
+      <% end %>
+    </div>
+    <div class="mx-2 ">
+      <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <% if current_user.photo.attached? %>
+          <h4 class="text-danger text-capitalize mt-2" id="nombre">
+          <%= current_user.name %>  <%=cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
+          <h4>
         <% else %>
-          <li class="nav-item">
-            <%= link_to new_user_session_path, class: "nav-link"  do%>
-              <span><i>Login 🌊</i></span>
-            <% end %>
-          </li>
-           <li class="nav-item">
-            <%= link_to new_user_registration_path, class: "nav-link"  do %>
-            <span><i><i>Register ✒️</i></i></span>
-            <% end %>
-            <%= link_to "| Login :wave: ", new_user_session_path, class: "nav-link" %>
-        </li>
-           <li class="nav-item">
-            <%= link_to " Register :black_nib: |", new_user_registration_path, class: "nav-link" %>
-          </li>
+          <h4 class="text-danger text-capitalize mt-2">
+          <%= current_user.name %>  <img src="https://gopostr.s3.amazonaws.com/favicon_url/bvnowNkxrBEJWo1QyPAeSz0vDNa8hajfTgPKTP7m.png" class="avatar" alt="dropdown menu">
+          <h4>
         <% end %>
-      </ul>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <%= link_to "Profile", dashboard_path, class: "dropdown-item text-danger btn btn-danger" %>
+          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item text-danger btn btn-danger" %>
+        </div>
+      </a>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="navbar navbar-expand-sm navbar-danger navbar-lewagon d-flex justify-content-between border-1 border-bottom border-danger">
+    <i class="fa-solid fa-guitar fa-2xl" style="color: #6b0f1a;"></i>
+    <div class="d-flex">
+      <div class="mx-0">
+        <%= link_to new_user_session_path, class: "nav-link"  do%>
+          <span>🟥 Login  </span>
+        <% end %>
+      </div>
+      <div class="mx-3">
+        <%= link_to new_user_registration_path, class: "nav-link"  do %>
+          <span> 🟩 Register </span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
