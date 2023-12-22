@@ -1,9 +1,11 @@
 <div class="owner-container mb-4">
   <div class="row">
 
+
+
     <div class="col-md-6">
-      <div class="card mb-4 mb-md-0 p-3">
-          <p class="mb-4"><span class="text-danger font-italic me-1">Instruments in my store    </span><button type="button" class="btn btn-outline-danger"><%= link_to "Create an Instrument", new_instrument_path, class:"text-decoration-none text-danger"%></button></p>
+      <div class="card mb-4 p-3">
+          <h4 class="mb-3 d-flex justify-content-between"><span class="text-danger font-italic me-1">Instruments in my store</span><button type="button" class="btn btn-danger"><%= link_to "Create an Instrument", new_instrument_path, class:"text-decoration-none text-white"%></button></h4>
           <% @current_user.created_instruments.each do |instrument| %>
             <div class="col-md-12 mb-3">
                 <div class="card mb-4 mb-md-0">
@@ -24,14 +26,14 @@
 
     <div class="col-md-6">
       <div class="card mb-2 mb-md-0 p-3">
-        <p class="mb-4"><span class="text-danger font-italic me-1">Rented Instruments</span></p>
+        <h4 class="mb-4"><span class="text-danger font-italic me-1">Rented Instruments</span></h4>
           <% @current_user.owner_bookings.each do |booking| %>
             <div class="col-md-12 mb-3">
                 <div class="card mb- mb-md-0">
                   <div class="card-product">
                      <%= cl_image_tag booking.instrument.photo.key %>
                     <div class="card-product-infos">
-                      <h2 class="text-danger"><%= booking.instrument.name %> <%= link_to "details", instrument_path(booking), class:"text-decoration-none text-secondary"%></h2>
+                      <h2 class="text-danger"><%= booking.instrument.name %> <%= link_to "Details", instrument_path(booking), class:"text-decoration-none text-secondary"%></h2>
                       <p>Pick up date: <%= booking.pick_up_date%> | Drop off date: <%= booking.drop_off_date %></p>
                       <p>Price per day: <%= booking.instrument.price%>$ | Rented days: <%=booking.ranged_dates %></p>
                       <p>Total: <%=booking.final_price%>$</p>
