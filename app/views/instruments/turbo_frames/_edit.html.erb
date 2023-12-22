@@ -6,7 +6,7 @@
           <%= f.input :condition, as: :select, collection: Instrument::CONDITIONS, label:"Condition" %>
           <%= f.input :category, as: :select, collection: Instrument::CATEGORIES, label:"Category" %>
           <%= f.input :price, label:"Price 🫰"%>
-          <%= f.input :address, label:"Pick up location 🗺️"%>
+          <%= f.input :address, label:"Pick up location 📍"%>
       <%= f.submit class: "btn btn-outline-danger" %>
     <% end %>
   </div>
