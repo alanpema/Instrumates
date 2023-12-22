@@ -5,14 +5,14 @@
 
     <div class="col-md-6">
       <div class="card mb-4 p-3">
-          <h4 class="mb-3 d-flex justify-content-between"><span class="text-danger font-italic me-1">Instruments in my store</span><button type="button" class="btn btn-danger"><%= link_to "Create an Instrument", new_instrument_path, class:"text-decoration-none text-white"%></button></h4>
+          <h4 class="mb-3 d-flex justify-content-between"><span class="text-danger font-italic me-1">Instruments in my store</span><button type="button" class="btn btn-danger"><%= link_to "Add to store 🎷", new_instrument_path, class:"text-decoration-none text-white"%></button></h4>
           <% @current_user.created_instruments.each do |instrument| %>
             <div class="col-md-12 mb-3">
                 <div class="card mb-4 mb-md-0">
                   <div class="card-product">
                       <%= cl_image_tag instrument.photo.key %>
                     <div class="card-product-infos">
-                      <h2 class="text-danger"><%= instrument.name %> <%= link_to "Details", instrument_path(instrument), class:"text-decoration-none text-secondary"%></h2>
+                      <h2 class="text-danger"><%= instrument.name %> <%= link_to "Details", instrument_path(instrument), class:"text-decoration-none text-secondary d-flex justify-content-end"%></h2>
                       <p>Condition: <%= instrument.condition %></p>
                       <p>Price: <%= instrument.price %>$</p>
                       <p></p>
