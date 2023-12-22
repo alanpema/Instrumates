@@ -8,13 +8,15 @@
           <h4 class="mb-3 d-flex justify-content-between"><span class="text-danger font-italic me-1">Instruments in my store</span><button type="button" class="btn btn-danger"><%= link_to "Add to store 🎷", new_instrument_path, class:"text-decoration-none text-white"%></button></h4>
           <% @current_user.created_instruments.each do |instrument| %>
             <div class="col-md-12 mb-3">
-                <div class="card mb-4 mb-md-0">
+                <div class="mb-4 mb-md-0">
                   <div class="card-product">
                       <%= cl_image_tag instrument.photo.key %>
-                    <div class="card-product-infos">
-                      <h2 class="text-danger"><%= instrument.name %> <%= link_to "Details", instrument_path(instrument), class:"text-decoration-none text-secondary d-flex justify-content-end"%></h2>
-                      <p>Condition: <%= instrument.condition %></p>
-                      <p>Price: <%= instrument.price %>$</p>
+                    <div class="card-product-infos mb-1 mt-2">
+                      <h2 class="text-danger"><%= link_to instrument.name, instrument_path(instrument), class:"text-decoration-none text-danger"%></h2>
+                      <p><strong>Condition: </strong><%= instrument.condition %></p>
+                      <p><strong>Category: </strong> <%= instrument.category %></p>
+                      <p><strong>Price per day:</strong> <%= instrument.price %>$</p>
+                      <p><strong>Pick up location:</strong> <%= instrument.address %></p>
                       <p></p>
                     </div>
                   </div>
@@ -28,21 +30,23 @@
         <h4 class="mb-4"><span class="text-danger font-italic me-1">Rented Instruments</span></h4>
           <% @current_user.owner_bookings.each do |booking| %>
             <div class="col-md-12 mb-3">
-                <div class="card mb- mb-md-0">
+                <div class="mb-md-0">
                   <div class="card-product">
                     <%= cl_image_tag booking.instrument.photo.key %>
-                    <div class="card-product-infos">
+                    <div class="card-product-infos mb-1 mt-2">
                       <h2 class="text-danger">
-                        <%= booking.instrument.name %>
-                        <%= link_to "Details", instrument_path(booking), class:"text-decoration-none text-secondary"%>
+                        <div class="d-flex justify-content-between">
+                        <%= link_to booking.instrument.name, instrument_path(booking.instrument), class:"text-decoration-none text-danger d-flex justify-content-end"%>
                         <%= render  "bookings/shared/status", booking: booking %>
-                        <%= link_to "Accept", accept_booking_path(booking), class: "badge bg-success text-decoration-none",data: {turbo_method: :patch} %>
-                        <%= link_to "Reject", decline_booking_path(booking),  data: { confirm: 'Are you sure?' }, class: "badge bg-danger me-1 text-decoration-none",  data: {turbo_method: :patch} %>
+                        </div>
                       </h2>
-                      <p>Pick up date: <%= booking.pick_up_date%> | Drop off date: <%= booking.drop_off_date %></p>
-                      <p>Price per day: <%= booking.instrument.price%>$ | Rented days: <%=booking.ranged_dates %></p>
-                      <p>Total: <%=booking.final_price%>$</p>
-                      <p>Renter contact: <%= booking.renter.name %> | <%= booking.renter.email %></p>
+                      <p><strong>Pick up date:</strong> <%= booking.pick_up_date%> | <strong> Drop off date:</strong> <%= booking.drop_off_date %></p>
+                      <p><strong>Price per day: </strong> <%= booking.instrument.price%>$ | <strong>Rented days:</strong> <%=booking.ranged_dates %> | <strong> Total:</strong> <%=booking.final_price%>$</p>
+                      <p><strong>Renter contact: </strong> <%= booking.renter.name %> | <%= booking.renter.email %></p>
+                      <div class= "d-flex">
+                      <p><strong>Change Status: </strong> </p>
+                      <%= link_to "Accept", accept_booking_path(booking), class: "badge bg-success text-decoration-none m-1", data: {turbo_method: :patch} %> <%= link_to "Reject", decline_booking_path(booking),  data: { confirm: 'Are you sure?' }, class: "badge bg-danger me-1 m-1 text-decoration-none",  data: {turbo_method: :patch} %>
+                      </div>
                     </div>
                   </div>
                 </div>
