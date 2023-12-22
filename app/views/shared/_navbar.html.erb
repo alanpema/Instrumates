@@ -10,10 +10,10 @@
       <% end %>
     </div>
     <div class="mx-2 ">
-      <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a href="#" class="avatar text-decoration-none" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <% if current_user.photo.attached? %>
           <h4 class="text-danger text-capitalize mt-2 text-decoration-none" id="nombre">
-          <%= current_user.name %>  <%=cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
+            <%= current_user.name %>  <%=cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
           <h4>
         <% else %>
           <h4 class="text-danger text-capitalize mt-2 text-decoration-none">
