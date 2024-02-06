@@ -12,7 +12,7 @@
         <% if @instrument.user != current_user %>
           <%= link_to "Book this intrument", new_instrument_booking_path(@instrument), class: "btn btn-outline-danger rounded-pill mb-4", data: { turbo: false } %>
         <% end %>
-        </div>
+          </div>
         <% if @instrument.user == current_user %>
           <div class="d-flex flex-column">
             <%= link_to "Edit info", edit_instrument_path(@instrument), class: "btn btn-outline-warning mb-2" %>
